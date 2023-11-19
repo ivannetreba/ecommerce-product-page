@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>E-commerce product page</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="aside" id="aside">
+      <img src="images/icon-close.svg" alt="icon-close" id="icon-close">
+      <ul role="list" class="aside-list">
+        <li class="aside-item"><a href="/">Collections</a></li>
+        <li class="aside-item"><a href="/">Men</a></li>
+        <li class="aside-item"><a href="/">Women</a></li>
+        <li class="aside-item"><a href="/">About</a></li>
+        <li class="aside-item"><a href="/">Contact</a></li>
+      </ul>
+    </aside>
+    <div class="aside-shadow" id="aside-shadow"></div>
+    <div class="nested-container">
+      <header class="header">
+        <div class="header__left">
+          <img src="images/icon-menu.svg" alt="menu" class="aside-icon" id="aside-icon">
+          <div class="logo">
+            <img src="images/logo.svg" alt="">
+          </div>
+          <ul role="list" class="nav-list">
+            <li class="nav-item"><a href="/">Collections</a></li>
+            <li class="nav-item"><a href="/">Men</a></li>
+            <li class="nav-item"><a href="/">Women</a></li>
+            <li class="nav-item"><a href="/">About</a></li>
+            <li class="nav-item"><a href="/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="header__right">
+          <div class="cart">
+            <img src="images/icon-cart.svg" alt="">
+            <span class="badge">0</span>
+          </div>
+          <div class="avatar">
+            <img src="images/image-avatar.png" alt="">
+          </div>
+        </div>
+      </header>
+      <div class="line"></div>
+    </div>
+    <!-- Product -->
+    <main class="product">
+      <div class="image-container">
+        <div class="product__images">
+          <img src="images/image-product-1.jpg" alt="" class="product__img">
+          <img src="images/icon-previous.svg" alt="previous" class="arrow previous">
+          <img src="images/icon-next.svg" alt="next" class="arrow next">
+        </div>
+        <div class="thumbnails">
+          <div class="thumbnail-border thumbnail-picked-border">
+            <img src="images/image-product-1-thumbnail.jpg" alt="" class="thumbnail thumbnail-picked">
+          </div>
+          <div class="thumbnail-border">
+            <img src="images/image-product-2-thumbnail.jpg" alt="" class="thumbnail">
+          </div>
+          <div class="thumbnail-border">
+            <img src="images/image-product-3-thumbnail.jpg" alt="" class="thumbnail">
+          </div>
+          <div class="thumbnail-border">
+            <img src="images/image-product-4-thumbnail.jpg" alt="" class="thumbnail">
+          </div>
+        </div>
+      </div>
+      <div class="nested-container product__body">
+        <div class="product__description">
+          <h3 class="product__company">Sneaker Company</h3>
+          <h2 class="product__title">Fall Limited Edition Sneakers</h2>
+          <p class="product__text">These low-profile sneakers are your perfect casual wear companion. Featuring a
+            durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+        </div>
+        <div class="product__price">
+          <p class="price">$125.00</p>
+          <p class="discount">50%</p>
+          <p class="full-price">$250.00</p>
+        </div>
+        <form action="" id="form-addtocart">
+          <div class="product__btns">
+            <div class="product__quantity-container">
+              <input type="number" id="quantity" name="quantity" class="btn product__quantity">
+              </input>
+              <img src="images/icon-minus.svg" alt="minus" class="minus change-quantity" id="minus">
+              <img src="images/icon-plus.svg" alt="plus" class="plus change-quantity" id="plus">
+            </div>
+            <button type="submit" class="btn product__add" id="btn-add">
+              <img src="images/icon-cart-white.svg" alt="" class="btn__cart">
+              Add to cart
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <!--
+    <div class="cart__box">
+      <h3 class="cart__title">
+        Cart
+      </h3>
+      <div class="cart__body">
+        <p class="cart__empty">
+          Your cart is empty.
+        </p>
+      </div>
+    </div>-->
+  </div> 
+  <script src="js/script.js"></script>
+</body>
+</html>
+
+<!-- Make a sprite with svg image -->
+
+    <!-- Attribution 
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Ivan Netreba</a>.
+    </div>-->
