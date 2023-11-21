@@ -35,16 +35,13 @@ let quantityProducts = allProductsInCart.length;
 let cartBox;
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-  initQuantityField();
-  highlightThumbnailDefault();
-});
 asideIcon.addEventListener('click', toggleAside);
 iconClose.addEventListener('click', closeAside);
+document.addEventListener('DOMContentLoaded', initQuantityField);
 minus.addEventListener('click', decreaseCount);
 plus.addEventListener('click', increaseCount);
-document.addEventListener('click', toggleCartBox);
 formAddToCart.addEventListener('submit', addToCart);
+document.addEventListener('click', toggleCartBox);
 
 // Functions
 function toggleAside() {
@@ -83,6 +80,9 @@ function addToCart(e) {
     quantityProducts++;
     allProductsInCart.push(productInCart);
     showBadgeQuantity();
+    if (document.querySelector(`.${CART_BOX_CLASS}`).classList.contains('cart-box__show')) {
+      showProductInCart();
+    }
   }
 }
 
@@ -100,7 +100,7 @@ function toggleCartBox(e) {
     if (cartBox.classList.contains('cart-box__show')) {
       showProductInCart();
     }
-  } else if (cartBox &&!isClickInCartBox && cartBox.classList.contains('cart-box__show')) {
+  } else if (cartBox && !isClickInCartBox && cartBox.classList.contains('cart-box__show')) {
     cartBox.classList.remove('cart-box__show');
   }
 }
@@ -156,61 +156,7 @@ function deleteProductInCart(e) {
   const elementIndex = clickedElement.dataset.index;
   allProductsInCart.splice(elementIndex, 1);
   quantityProducts--;
-  toggleCartBoxVisibility(cartBox);
+  toggleCartBoxVisibility();
   showBadgeQuantity();
   showProductInCart();
-}
-
-// Pick a photo
-const thumbnail = document.querySelectorAll('.thumbnail');
-const thumbnailBorder = document.querySelectorAll('.thumbnail-border');
-const productImg = document.querySelector('.product__img');
-
-thumbnail.forEach((th, i) => {
-  th.addEventListener('click', e => {
-    const thClicked = e.currentTarget; 
-    productImg.src = `images/image-product-${i + 1}.jpg`;
-    highlightThumbnail(i);
-  })
-})
-
-function highlightThumbnail(iClicked) {
-  thumbnailBorder.forEach((thB, i) => {
-    const child = thB.querySelector('.thumbnail');
-    if (i === iClicked) {
-      thB.classList.add('thumbnail-picked-border');
-      child.classList.add('thumbnail-picked');
-    } else {
-      thB.classList.remove('thumbnail-picked-border');
-      child.classList.remove('thumbnail-picked');
-    }
-  });
-}
-
-function highlightThumbnailDefault() {
-  const highlightThumbnail = thumbnail[0];
-  const highlightThumbnailBorder = thumbnailBorder[0];
-  highlightThumbnail.classList.add('thumbnail-picked');
-  highlightThumbnailBorder.classList.add('thumbnail-picked-border');
-}
-
-// big picture
-const imageContainer = document.querySelector('.image-container')
-const productImages = document.querySelector('.product__images');
-
-productImg.addEventListener('click', bigPicture);
-
-function bigPicture() {
-  imageContainer.classList.add('big-picture');
-  asideShadow.classList.add('aside-show');
-  productImages.classList.add('big-picture');
-
-  document.addEventListener('click', (e) => {
-    const clickedArrea = e.target;
-    if (clickedArrea === asideShadow) {
-      imageContainer.classList.remove('big-picture');
-      asideShadow.classList.remove('aside-show');
-      productImages.classList.remove('big-picture');
-    }
-  })
 }

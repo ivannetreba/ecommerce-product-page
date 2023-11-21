@@ -19,7 +19,6 @@
         <li class="aside-item"><a href="/">Contact</a></li>
       </ul>
     </aside>
-    <div class="aside-shadow" id="aside-shadow"></div>
     <div class="nested-container">
       <header class="header">
         <div class="header__left">
@@ -51,13 +50,15 @@
     <main class="product">
       <div class="image-container">
         <div class="product__images">
-          <img src="images/image-product-1.jpg" alt="" class="product__img">
+          <div class="">
+            <img src="images/image-product-1.jpg" alt="" class="product__img">
+          </div>
           <img src="images/icon-previous.svg" alt="previous" class="arrow previous">
           <img src="images/icon-next.svg" alt="next" class="arrow next">
         </div>
         <div class="thumbnails">
-          <div class="thumbnail-border thumbnail-picked-border">
-            <img src="images/image-product-1-thumbnail.jpg" alt="" class="thumbnail thumbnail-picked">
+          <div class="thumbnail-border">
+            <img src="images/image-product-1-thumbnail.jpg" alt="" class="thumbnail">
           </div>
           <div class="thumbnail-border">
             <img src="images/image-product-2-thumbnail.jpg" alt="" class="thumbnail">
@@ -85,7 +86,7 @@
         <form action="" id="form-addtocart">
           <div class="product__btns">
             <div class="product__quantity-container">
-              <input type="number" id="quantity" name="quantity" class="btn product__quantity">
+              <input type="number" id="quantityField" name="quantity" class="btn product__quantity">
               </input>
               <img src="images/icon-minus.svg" alt="minus" class="minus change-quantity" id="minus">
               <img src="images/icon-plus.svg" alt="plus" class="plus change-quantity" id="plus">
@@ -109,7 +110,8 @@
         </p>
       </div>
     </div>-->
-  </div> 
+  </div>
+  <div class="shadow" id="aside-shadow"></div> 
   <script src="js/script.js"></script>
 </body>
 </html>
