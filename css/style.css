@@ -404,24 +404,24 @@ a {
   .image-container {
     max-width: 445px;
     justify-self: right;
+    display: grid;
+    justify-items: center;
   }
   .product__images {
     width: 445px;
     height: 445px;
     border-radius: 15px;
     overflow: hidden;
-  }/*
-  .product__images.big-picture {
-    width: 550px;
-    height: 550px;
-  }*/
+  }
   .arrow {
     display: none;
   }
   .thumbnails {
     display: flex;
+    gap: 31px;
     justify-content: space-between;
     margin-top: 3.2rem;
+    max-width: 445px;
   }
   .product__body {
     max-width: 445px;

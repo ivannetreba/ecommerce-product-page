@@ -27,9 +27,16 @@ const formAddToCart = document.getElementById(FORM_ADD_TO_CART_ID);
 const cart = document.querySelector(`.${CART_CLASS}`);
 const badge = document.querySelector(`.${BADGE_CLASS}`);
 const container = document.querySelector(`.${CONTAINER_CLASS}`);
+const thumbnail = document.querySelectorAll('.thumbnail');
+const thumbnailBorder = document.querySelectorAll('.thumbnail-border');
+const productImg = document.querySelector('.product__img');
+const arrow = document.querySelectorAll('.arrow');
+const imageContainer = document.querySelector('.image-container')
+const productImages = document.querySelector('.product__images');
 
 // Other variables
 let count = 0;
+let clickCounter = 1;
 const allProductsInCart = [];
 let quantityProducts = allProductsInCart.length;
 let cartBox;
@@ -45,11 +52,19 @@ minus.addEventListener('click', decreaseCount);
 plus.addEventListener('click', increaseCount);
 document.addEventListener('click', toggleCartBox);
 formAddToCart.addEventListener('submit', addToCart);
+productImg.addEventListener('click', bigPicture);
 
-// Functions
+// Open and close aside menu
 function toggleAside() {
   aside.classList.toggle('aside-show');
   asideShadow.classList.toggle('aside-show');
+
+  document.addEventListener('click', (e) => {
+    const clickedArrea = e.target;
+    if (clickedArrea === asideShadow) {
+      closeAside();
+    }
+  })
 }
 
 function closeAside() {
@@ -61,6 +76,7 @@ function initQuantityField() {
   quantityField.value = count;
 }
 
+// Form work
 function decreaseCount() {
   count = Math.max(count - 1, 0);
   quantityField.value = count;
@@ -86,6 +102,7 @@ function addToCart(e) {
   }
 }
 
+// Cart work
 function showBadgeQuantity() {
   badge.classList.toggle('show-badge', quantityProducts > 0);
   badge.innerText = quantityProducts;
@@ -97,10 +114,7 @@ function toggleCartBox(e) {
 
   if (isClickInCart) {
     toggleCartBoxVisibility();
-    if (cartBox.classList.contains('cart-box__show')) {
-      showProductInCart();
-    }
-  } else if (cartBox &&!isClickInCartBox && cartBox.classList.contains('cart-box__show')) {
+  } else if (cartBox && !isClickInCartBox && cartBox.classList.contains('cart-box__show')) {
     cartBox.classList.remove('cart-box__show');
   }
 }
@@ -110,6 +124,7 @@ function toggleCartBoxVisibility() {
     createCartBox();
   }
   cartBox.classList.toggle('cart-box__show');
+  showProductInCart();
 }
 
 function createCartBox() {
@@ -162,10 +177,6 @@ function deleteProductInCart(e) {
 }
 
 // Pick a photo
-const thumbnail = document.querySelectorAll('.thumbnail');
-const thumbnailBorder = document.querySelectorAll('.thumbnail-border');
-const productImg = document.querySelector('.product__img');
-
 thumbnail.forEach((th, i) => {
   th.addEventListener('click', e => {
     const thClicked = e.currentTarget; 
@@ -194,23 +205,41 @@ function highlightThumbnailDefault() {
   highlightThumbnailBorder.classList.add('thumbnail-picked-border');
 }
 
-// big picture
-const imageContainer = document.querySelector('.image-container')
-const productImages = document.querySelector('.product__images');
-
-productImg.addEventListener('click', bigPicture);
-
+// Make picture bigger
 function bigPicture() {
-  imageContainer.classList.add('big-picture');
-  asideShadow.classList.add('aside-show');
-  productImages.classList.add('big-picture');
+  if (window.innerWidth >= 1160) {
+    imageContainer.classList.add('big-picture');
+    asideShadow.classList.add('aside-show');
+    productImages.classList.add('big-picture');
 
-  document.addEventListener('click', (e) => {
-    const clickedArrea = e.target;
-    if (clickedArrea === asideShadow) {
-      imageContainer.classList.remove('big-picture');
-      asideShadow.classList.remove('aside-show');
-      productImages.classList.remove('big-picture');
+    document.addEventListener('click', (e) => {
+      const clickedArrea = e.target;
+      if (clickedArrea === asideShadow) {
+        imageContainer.classList.remove('big-picture');
+        asideShadow.classList.remove('aside-show');
+        productImages.classList.remove('big-picture');
+      }
+    })
+  }  
+}
+
+// Slider using arrow
+arrow.forEach(arr => {
+  arr.addEventListener('click', e => {
+    const clickeArrow = e.target;
+    if (clickeArrow.classList.contains("next")) {
+      clickCounter++;
+    } else if (clickeArrow.classList.contains("previous")) {
+      clickCounter--;
     }
+    slideImages(clickCounter);
   })
+})
+
+function slideImages(counter) {
+  clickCounter = counter;
+  clickCounter = (clickCounter < 1) ? 4 : clickCounter;
+  clickCounter = (clickCounter > 4) ? 1 : clickCounter;
+  productImg.src = `images/image-product-${clickCounter}.jpg`;
+  console.log(clickCounter);
 }
