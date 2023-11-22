@@ -152,7 +152,7 @@ function showProductInCart() {
 function makeHTMLProductsInCart() {
   const allProductsInCartHTML = allProductsInCart.map((p, i) => `
     <div class="product-in-cart">
-      <img class="product-in-cart-img" src="../images/image-product-1-thumbnail.jpg" alt="">
+      <img class="product-in-cart-img" src="/images/image-product-1-thumbnail.jpg" alt="">
       <div>
         <p>${p.title}</p>
         <p>$${p.price} x ${p.count} <span class="bold very-dark-blue">$${p.total}</span></p>
